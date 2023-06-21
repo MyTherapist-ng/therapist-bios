@@ -5,7 +5,7 @@ import video from "../../assets/video.svg";
 const Video = () => {
   return (
     <div className='mt-4 md:mt-[56px]'>
-      <Image src={video} alt="video" width={840} height={451} className='rounded-[10px]' />
+      <Image src={video} alt="video" className=' w-full rounded-[10px]' />
     </div>
   );
 };
