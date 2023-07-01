@@ -1,8 +1,13 @@
 import Footer from "./components/footer/Footer";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "700", "600"],
+  variable: "--font-jakarta",
+});
+
 
 export const metadata = {
   title: "MyTherapist",
@@ -16,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='w-full flex flex-col justify-center items-center'>
+      <body className={` ${jakarta.className} w-full flex flex-col justify-center items-center`}>
         {children}
         <Footer />
       </body>
