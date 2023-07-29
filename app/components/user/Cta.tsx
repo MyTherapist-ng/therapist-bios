@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import arrowForward from "../../assets/arrow-forward.svg";
 import Button from "../reusables/Button";
 
 const Cta = () => {
@@ -9,7 +8,7 @@ const Cta = () => {
       <Button color="#1AB265" />
       <button
         className="font-bold text-base text-grayscale leading-6 text-center bg-#FFFFFF border-grayscale
-      border border-solid rounded-lg shadow-boxShadow w-[216px] h-[56px]"
+      border border-solid rounded-lg shadow-boxShadow w-[216px] h-[56px] hover:opacity-60 transition-all hover:scale-105 cursor-pointer"
       >
         learn more
       </button>

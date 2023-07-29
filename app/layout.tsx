@@ -17,13 +17,12 @@ export const metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
       <body className={` ${jakarta.className} w-full flex flex-col justify-center items-center`}>
         {children}
-        <Footer />
       </body>
     </html>
   );
