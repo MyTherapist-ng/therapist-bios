@@ -7,10 +7,10 @@ type ButtonProp = {
 };
 
 const Button = ({ color }: ButtonProp) => {
-    console.log(color)
   return (
-    <button style={{ backgroundColor: `${color}` }}
-      className={`rounded-lg shadow-boxShadow w-[216px] h-[56px]`}
+    <button
+      style={{ backgroundColor: `${color}` }}
+      className={`rounded-lg shadow-boxShadow w-[216px] h-[56px] hover:opacity-60 hover:scale-105 transition-all`}
     >
       <div className="flex justify-center items-center space-x-5">
         <p className="font-bold text-base text-white leading-6">

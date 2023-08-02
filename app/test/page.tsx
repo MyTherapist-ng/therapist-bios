@@ -1,7 +1,7 @@
-import Image from "next/image";
-import User from "./components/user/User";
-import Info from "./components/info/Info";
-import Footer from "./components/footer/Footer";
+import Footer from "../components/footer/Footer";
+import Info from "../components/info/Info";
+import User from "../components/user/User";
+
 
 export default function Home() {
   return (

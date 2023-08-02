@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import rating from "../../assets/rating.svg";
+import 'animate.css'
 
 type Prop = {
   review: string;
@@ -8,8 +9,7 @@ type Prop = {
 
 const Review = ({ review }: Prop) => {
   return (
-    <div className="flex flex-col bg-white p-5 rounded- w-full md:w-[400px]">
-      <h3 className="font-bold text-sm leading-6">He was really encouraging</h3>
+    <div className="flex flex-col bg-white p-5 rounded-lg w-full md:w-[400px] hover:animate-pulse">
       <Image
         src={rating}
         alt="education"

@@ -7,7 +7,7 @@ const User = () => {
   return (
     <div className="w-full flex flex-col justify-center items-center mt-[30px] md:mt-10 mb-[76px]">
       <UserProfile />
-      <p className="text-center underline font-medium text-sm md:text-base md:leading-8 text-grayscale">
+      <p className="text-center underline font-medium text-sm md:text-base md:leading-8 text-grayscale cursor-pointer hover:opacity-60 transition-opacity">
         Read interview
       </p>
       <Userdetails />
