@@ -22,8 +22,11 @@ const Video = () => {
   };
 
   const extractVideoId = () => {
-    if (user?.youtube_video_url) {
-      const url = new URL(user?.youtube_video_url);
+    if (
+      user?.youtube_video_url ||
+      "https://www.youtube.com/watch?v=AqnGLiWt_34"
+    ) {
+      const url = new URL("https://www.youtube.com/watch?v=AqnGLiWt_34" || user?.youtube_video_url);
       const searchParams = url.searchParams;
       const videoId = searchParams.get("v");
       setVideoId(videoId as string);
