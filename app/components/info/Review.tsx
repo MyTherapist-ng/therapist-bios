@@ -4,7 +4,7 @@ import rating from "../../assets/rating.svg";
 import 'animate.css'
 
 type Prop = {
-  review: string;
+  review: any;
 };
 
 const Review = ({ review }: Prop) => {
@@ -17,7 +17,7 @@ const Review = ({ review }: Prop) => {
         height={19}
         className="my-2"
       />
-      <p className="font-medium text-[13px] leading-5 text-[#667085]">{review}</p>
+      <p className="font-medium text-[13px] leading-5 text-[#667085]">{review?.title}</p>
     </div>
   );
 };

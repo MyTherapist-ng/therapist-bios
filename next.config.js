@@ -1,14 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "https://mytherapist.ng/for-therapists",
-        permanent: true,
-      },
-    ];
+  images: {
+    domains: ["www.gravatar.com"],
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "https://mytherapist.ng/for-therapists",
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
