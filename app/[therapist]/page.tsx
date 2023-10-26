@@ -1,21 +1,20 @@
 "use client";
-import User from "./components/user/User";
-import Info from "./components/info/Info";
-import Footer from "./components/footer/Footer";
 
-import { useEffect, useState } from "react";
-import { useUser } from "./context/userContext";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import User from "../components/user/User";
+import Info from "../components/info/Info";
+import Footer from "../components/footer/Footer";
+import { useUser } from "../context/userContext";
 
 function MyPage({ params }: { params: any }) {
-  console.log(params);
-  const [subdomain, setSubdomain] = useState("");
+  const { therapist } = params;
   const router = useRouter();
   const { setUser } = useUser();
 
   const fetchData = async (subdomain: string) => {
     const response = await fetch(
-      `https://be-staging.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`
+      `https://be-staging.mytherapist.ng/api/v1/user/therapists/public/${therapist}`
     );
     console.log(response);
     if (response.status === 200) {
@@ -27,26 +26,21 @@ function MyPage({ params }: { params: any }) {
   };
 
   useEffect(() => {
-    // Extract the subdomain from the client-side window.location
-    const parts = window.location.hostname.split(".");
-    const subdomain = parts[parts.length - 2];
-    if (!subdomain) {
+    if (!therapist) {
       router.push("https://mytherapist.ng/for-therapists");
     } else {
-      setSubdomain(subdomain);
-      fetchData(subdomain);
+      fetchData(therapist);
     }
   }, []);
 
-  if (!subdomain) return null;
+  if (!therapist) return null;
 
   return (
     <div>
       <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
-        {/* <User />
+        <User />
         <Info />
-        <Footer /> */}
-        You are not supposed to be here
+        <Footer />
       </main>
     </div>
   );

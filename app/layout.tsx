@@ -1,4 +1,4 @@
-import Footer from "./components/footer/Footer";
+import { UserProvider } from "./context/userContext";
 import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
@@ -8,7 +8,6 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-
 export const metadata = {
   title: "MyTherapist",
   description: "Portfolio for therapists",
@@ -17,13 +16,17 @@ export const metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className={` ${jakarta.className} w-full flex flex-col justify-center items-center`}>
-        {children}
-      </body>
+      <UserProvider>
+        <body
+          className={` ${jakarta.className} w-full flex flex-col justify-center items-center`}
+        >
+          {children}
+        </body>
+      </UserProvider>
     </html>
   );
 }
