@@ -21,13 +21,13 @@ function MyPage({ params }: { params: any }) {
       const data = await response.json();
       setUser(data);
     } else {
-      router.push("https://mytherapist.ng/for-therapists");
+      // router.push("https://mytherapist.ng/for-therapists");
     }
   };
 
   useEffect(() => {
     if (!therapist) {
-      router.push("https://mytherapist.ng/for-therapists");
+      // router.push("https://mytherapist.ng/for-therapists");
     } else {
       fetchData(therapist);
     }
