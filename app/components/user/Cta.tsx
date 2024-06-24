@@ -4,7 +4,7 @@ import Button from "../reusables/Button";
 import { useUser } from "@/app/context/userContext";
 
 const Cta = () => {
-  const user = useUser();
+  const {user} = useUser();
   return (
     <div className="flex flex-col justify-center items-center md:flex-row space-y-2 md:space-y-0 md:space-x-3">
       <Button color="#1AB265" />
