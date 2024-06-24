@@ -13,8 +13,9 @@ const UserProfile = () => {
       <Image
         width={120}
         height={120}
+        
         alt="avatar"
-        className="md:w-[186px] md:h-[186px]"
+        className="md:w-[186px] md:h-[186px] rounded-full"
         src={user?.avatar}
       />
       <div className="flex space-x-2 items-center justify-center mt-7 mb-3">
