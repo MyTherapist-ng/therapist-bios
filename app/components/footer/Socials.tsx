@@ -9,7 +9,7 @@ const Socials = () => {
 
   return (
     <div className="flex space-x-6 mb-10 justify-center items-center">
-      <a href={user?.linked_url} target="_" className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={user?.linked_url} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={facebook}
           alt="facebook"
@@ -19,17 +19,17 @@ const Socials = () => {
         />
       </a>
 
-      <a href={user?.linked_url} target="_" className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={user?.linked_url} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={linkedIn}
-          alt="aedIn"
+          alt="LinkedIn Share Icon"
           width={36}
           height={36}
           className="md:w-12 md:h-12"
         />
       </a>
 
-      <a href={user?.linked_url} target="_"  className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.therapistfinder.xyz&text=Checkout ${user?.name} on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={twitter}
           alt="twitter"
