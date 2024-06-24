@@ -9,7 +9,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "MyTherapist",
+  title: "MyTherapist.ng Therapist Finder",
   description: "Portfolio for therapists",
 };
 
