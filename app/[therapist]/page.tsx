@@ -14,7 +14,7 @@ function MyPage({ params }: { params: any }) {
 
   const fetchData = async (subdomain: string) => {
     const response = await fetch(
-      `https://be-staging.mytherapist.ng/api/v1/user/therapists/public/${therapist}`
+      `https://admin.mytherapist.ng/api/v1/user/therapists/public/${therapist}`
     );
     console.log(response);
     if (response.status === 200) {
