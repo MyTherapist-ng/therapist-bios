@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["www.gravatar.com"],
+    domains: ["www.gravatar.com", "amazonaws.com", "storageforbackend.s3.us-east-1.amazonaws.com"],
   },
   // async redirects() {
   //   return [
