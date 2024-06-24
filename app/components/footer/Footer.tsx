@@ -15,7 +15,7 @@ const Footer = () => {
           Ready to take action?
         </h1>
         <a className="font-semibold decoration-none text-base md:text-xl text-[#f5f6ff] mt-4 mb-8">
-          Book me for N5,000/hr
+          Book {user?.name} for as low as {user?.price?.display} / Session
         </a>
         <Button color="#1B1D3E" />
       </div>
