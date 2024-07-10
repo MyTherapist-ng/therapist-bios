@@ -9,7 +9,7 @@ const Socials = () => {
 
   return (
     <div className="flex space-x-6 mb-10 justify-center items-center">
-      <a href={`https://www.facebook.com/sharer/sharer.php?u=Checkout ${user?.name} on Mytherapistng https://${user?.username}.therapistfinder.xyz`} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://www.facebook.com/sharer/sharer.php?u=Checkout ${user?.name} on Mytherapistng https://${user?.username}.mytherapist.com.ng`} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={facebook}
           alt="facebook"
@@ -19,8 +19,7 @@ const Socials = () => {
         />
       </a>
 
-      <a href={`https://www.linkedin.com/feed/?shareActive=true&text=Checkout ${user?.name} on Mytherapist.ng https://${user?.name}.therapistfinder.xyz %23mytherapistng
-`} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://www.linkedin.com/feed/?shareActive=true&text=Checkout ${user?.name} on Mytherapist.ng https://${user?.name}.mytherapist.com.ng %23mytherapistng`} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={linkedIn}
           alt="LinkedIn Share Icon"
@@ -30,7 +29,7 @@ const Socials = () => {
         />
       </a>
 
-      <a href={} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={"#"} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={linkedIn}
           alt="LinkedIn Share Icon"
@@ -40,7 +39,7 @@ const Socials = () => {
         />
       </a>
 
-      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.therapistfinder.xyz&text=Checkout ${user?.name} on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.mytherapist.com.ng&text=Checkout${user?.name}on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={twitter}
           alt="twitter"
