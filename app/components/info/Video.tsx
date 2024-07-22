@@ -10,7 +10,7 @@ const Video = () => {
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
-    event.target.pauseVideo();
+    // event.target.pauseVideo();
   };
 
   const opts: YouTubeProps["opts"] = {
