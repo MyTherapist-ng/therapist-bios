@@ -29,17 +29,7 @@ const Socials = () => {
         />
       </a>
 
-      <a href={"#"} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
-        <Image
-          src={linkedIn}
-          alt="LinkedIn Share Icon"
-          width={36}
-          height={36}
-          className="md:w-12 md:h-12"
-        />
-      </a>
-
-      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.mytherapist.com.ng&text=Checkout${user?.name}on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.mytherapist.com.ng&text=Checkout${user?.name} on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={twitter}
           alt="twitter"
