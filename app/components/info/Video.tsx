@@ -6,7 +6,7 @@ import { useUser } from "@/app/context/userContext";
 
 const Video = () => {
   const { user } = useUser();
-  const [videoId, setVideoId] = useState(null);
+  const [videoId, setVideoId] = useState<string | null>(null);
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     // access to player in all event handlers via event.target
