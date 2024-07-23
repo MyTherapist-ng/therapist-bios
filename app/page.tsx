@@ -1,55 +1,73 @@
-"use client";
+import { GetServerSideProps } from "next";
 import User from "./components/user/User";
 import Info from "./components/info/Info";
 import Footer from "./components/footer/Footer";
-
-import { useEffect, useState } from "react";
 import { useUser } from "./context/userContext";
-import { useRouter } from "next/navigation";
+import Head from "next/head";
 
-function MyPage({ params }: { params: any }) {
-  console.log(params);
-  const [subdomain, setSubdomain] = useState("");
-  const router = useRouter();
+type TherapistProps = {
+  subdomain: string;
+  userData: any;
+};
+
+const MyPage = ({ subdomain, userData }: TherapistProps) => {
   const { setUser } = useUser();
 
-  const fetchData = async (subdomain: string) => {
-    const response = await fetch(
-      `https://admin.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`
-    );
-    console.log(response);
-    if (response.status === 200) {
-      const data = await response.json();
-      setUser(data);
-    } else {
-      router.push("https://mytherapist.ng/for-therapists");
-    }
-  };
+  if (!subdomain) {
+    return null;
+  }
 
-  useEffect(() => {
-    // Extract the subdomain from the client-side window.location
-    const parts = window.location.hostname.split(".");
-    const subdomain = parts[parts.length - 2];
-    if (!subdomain) {
-      router.push("https://mytherapist.ng/for-therapists");
-    } else {
-      setSubdomain(subdomain);
-      fetchData(subdomain);
-    }
-  }, []);
-
-  if (!subdomain) return null;
+  setUser(userData);
 
   return (
     <div>
+      <Head>
+        <title>{`Therapist - ${userData.name}`}</title>
+        <meta name="description" content={`Learn more about therapist ${userData.name}.`} />
+        <meta name="keywords" content="therapist, therapy, mental health, counseling" />
+      </Head>
       <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
-        {/* <User />
+        <User />
         <Info />
-        <Footer /> */}
-        You are not supposed to be here
+        <Footer />
       </main>
     </div>
   );
-}
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const hostname = context.req.headers.host || "";
+  const parts = hostname.split(".");
+  const subdomain = parts.length > 2 ? parts[0] : "";
+
+  if (!subdomain) {
+    return {
+      redirect: {
+        destination: "https://mytherapist.ng/for-therapists",
+        permanent: false,
+      },
+    };
+  }
+
+  const response = await fetch(`https://admin.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`);
+
+  if (response.status !== 200) {
+    return {
+      redirect: {
+        destination: "https://mytherapist.ng/for-therapists",
+        permanent: false,
+      },
+    };
+  }
+
+  const userData = await response.json();
+
+  return {
+    props: {
+      subdomain,
+      userData,
+    },
+  };
+};
 
 export default MyPage;
