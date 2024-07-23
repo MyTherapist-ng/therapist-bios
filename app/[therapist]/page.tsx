@@ -1,10 +1,11 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import User from "../components/user/User";
 import Info from "../components/info/Info";
 import Footer from "../components/footer/Footer";
 import { useUser } from "../context/userContext";
 import Head from "next/head";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type TherapistProps = {
   therapist: string;
@@ -12,21 +13,25 @@ type TherapistProps = {
 };
 
 const MyPage = ({ therapist, userData }: TherapistProps) => {
-  const router = useRouter();
   const { setUser } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!therapist) {
+      router.push("https://mytherapist.ng/for-therapists");
+    }
+    setUser(userData);
+  }, [therapist, userData, router, setUser]);
 
   if (!therapist) {
-    router.push("https://mytherapist.ng/for-therapists");
     return null;
   }
-
-  setUser(userData);
 
   return (
     <div>
       <Head>
         <title>{`Therapist - ${userData.name}`}</title>
-        <meta name="description" content={`Learn more about therapist ${userData?.name}.`} />
+        <meta name="description" content={`Learn more about therapist ${userData.name}.`} />
         <meta name="keywords" content="therapist, therapy, mental health, counseling" />
       </Head>
       <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
