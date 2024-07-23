@@ -12,7 +12,7 @@ type TherapistProps = {
   userData: any;
 };
 
-const MyPage = ({ therapist, userData }: TherapistProps) => {
+const TherapistPage = ({ therapist, userData }: TherapistProps) => {
   const { setUser } = useUser();
   const router = useRouter();
 
@@ -31,8 +31,14 @@ const MyPage = ({ therapist, userData }: TherapistProps) => {
     <div>
       <Head>
         <title>{`Therapist - ${userData.name}`}</title>
-        <meta name="description" content={`Learn more about therapist ${userData.name}.`} />
-        <meta name="keywords" content="therapist, therapy, mental health, counseling" />
+        <meta
+          name="description"
+          content={`Learn more about therapist ${userData.name}.`}
+        />
+        <meta
+          name="keywords"
+          content="therapist, therapy, mental health, counseling"
+        />
       </Head>
       <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
         <User />
@@ -45,7 +51,9 @@ const MyPage = ({ therapist, userData }: TherapistProps) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { therapist } = context.params!;
-  const response = await fetch(`https://admin.mytherapist.ng/api/v1/user/therapists/public/${therapist}`);
+  const response = await fetch(
+    `https://admin.mytherapist.ng/api/v1/user/therapists/public/${therapist}`
+  );
 
   if (response.status !== 200) {
     return {
@@ -66,4 +74,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-export default MyPage;
+export default TherapistPage;

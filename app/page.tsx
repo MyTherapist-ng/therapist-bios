@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import User from "./components/user/User";
 import Info from "./components/info/Info";
@@ -5,6 +6,7 @@ import Footer from "./components/footer/Footer";
 import { useUser } from "./context/userContext";
 import Head from "next/head";
 import { fetchUserData } from "../lib/fetchUserData";
+import { Therapist } from "./types";
 
 type TherapistProps = {
   subdomain: string;
@@ -13,7 +15,7 @@ type TherapistProps = {
 
 const MyPage = ({ subdomain }: TherapistProps) => {
   const { setUser } = useUser();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<null | Therapist>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,8 +39,14 @@ const MyPage = ({ subdomain }: TherapistProps) => {
     <div>
       <Head>
         <title>{` ${userData.name} Therapist on Mytherapist.ng`}</title>
-        <meta name="description" content={`Learn more about therapist ${userData.name}. a top counselor in Nigeria`} />
-        <meta name="keywords" content="therapist, therapy, mental health, counseling" />
+        <meta
+          name="description"
+          content={`Learn more about therapist ${userData.name}. a top counselor in Nigeria`}
+        />
+        <meta
+          name="keywords"
+          content="therapist, therapy, mental health, counseling"
+        />
       </Head>
       <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
         <User />
