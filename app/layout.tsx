@@ -9,8 +9,8 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "MyTherapist.ng Therapist Finder",
-  description: "My Portfolio",
+  title: "My Profile on MyTherapist.ng ",
+  description: "Learn more about my practice as a therapist here",
 };
 
 export default function RootLayout({
