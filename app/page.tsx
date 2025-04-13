@@ -3,11 +3,20 @@ import User from "./components/user/User";
 import Info from "./components/info/Info";
 import Footer from "./components/footer/Footer";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { useUser } from "./context/userContext";
 import { useRouter } from "next/navigation";
 
-function MyPage({ params }: { params: any }) {
+/**
+ * The page for a given therapist subdomain, which fetches the data for that
+ * therapist from the API and displays it. If the subdomain doesn't exist, it
+ * redirects to the "for-therapists" page.
+ *
+ * @param {Object} props
+ * @prop {Promise<any>} props.params the subdomain to fetch and display
+ */
+function MyPage(props: { params: Promise<any> }) {
+  const params = use(props.params);
   console.log(params);
   const [subdomain, setSubdomain] = useState("");
   const router = useRouter();
@@ -15,6 +24,13 @@ function MyPage({ params }: { params: any }) {
 
   const fetchData = async (subdomain: string) => {
     const response = await fetch(
+  /**
+   * Fetches the therapist data for the given subdomain from the API, and
+   * updates the user state to that data if the response is successful. If
+   * the response is not successful, redirects to the "for-therapists" page.
+   *
+   * @param {string} subdomain the subdomain to fetch and display
+   */
       `https://admin.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`
     );
     console.log(response);
@@ -36,6 +52,7 @@ function MyPage({ params }: { params: any }) {
       setSubdomain(subdomain);
       fetchData(subdomain);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!subdomain) return null;
