@@ -6,8 +6,8 @@ import { useUser } from "@/app/context/userContext";
 
 
 const User = () => {
-  
-  const {user} = useUser();
+
+  const { user } = useUser();
   return (
     <div className="w-full flex flex-col justify-center items-center mt-[30px] md:mt-10 mb-[76px]">
       <UserProfile />
