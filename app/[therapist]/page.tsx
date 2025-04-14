@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, use } from "react";
 import { useRouter } from "next/navigation";
 import User from "../components/user/User";
 import Info from "../components/info/Info";
 import Footer from "../components/footer/Footer";
 import { useUser } from "../context/userContext";
 
-function MyPage({ params }: { params: any }) {
+function MyPage(props: { params: Promise<any> }) {
+  const params = use(props.params);
   const { therapist } = params;
   const router = useRouter();
   const { setUser } = useUser();
