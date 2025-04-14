@@ -1,6 +1,3 @@
-import User from "./components/user/User";
-import Info from "./components/info/Info";
-import Footer from "./components/footer/Footer";
 
 import { useEffect } from "react";
 import { useUser } from "./context/userContext";
@@ -23,10 +20,6 @@ function MyPage({ subdomain, userData }: { subdomain: string; userData: any }) {
   return (
     <div>
       <main className="flex flex-col items-center justify-between min-h-screen px-5 md:px-0">
-        {/* Uncomment these components if needed */}
-        {/* <User />
-        <Info />
-        <Footer /> */}
         You are not supposed to be here
       </main>
     </div>
