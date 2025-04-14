@@ -1,7 +1,7 @@
 "use client"
 import { ReactNode, createContext, useContext, useState } from "react";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   email: string;
@@ -47,7 +47,6 @@ export function useUser() {
  * @param {UserProviderProps} props - The props object containing children components.
  * @param {ReactNode} props.children - The components that will have access to the user context.
  */
-
 export function UserProvider({ children }: UserProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 

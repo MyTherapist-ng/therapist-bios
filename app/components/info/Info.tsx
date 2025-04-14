@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Video from "./Video";
 import Specialities from "./Specialities";

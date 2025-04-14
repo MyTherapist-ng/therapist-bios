@@ -1,11 +1,25 @@
+"use client";
+import { getLocalStorageItem } from "@/app/utils/local-storage/localStorage";
 import facebook from "../../assets/facebook.svg";
 import linkedIn from "../../assets/linkedIn.svg";
 import twitter from "../../assets/twitter.svg";
 import Image from "next/image";
-import { useUser } from "@/app/context/userContext";
+import { ITherapistResponseData } from "@/app/types/response.type";
+import { STORE_KEYS } from "@/app/configs/store.config";
+import { JSX } from "react";
 
-const Socials = () => {
-  const { user } = useUser()
+
+
+/**
+ * Socials renders a div with links to share the user on
+ * - Facebook
+ * - LinkedIn
+ * - Twitter
+ * @returns {JSX.Element} The JSX element representing the links to share the user.
+ */
+const Socials = (): JSX.Element => {
+  const user = getLocalStorageItem<ITherapistResponseData>(STORE_KEYS.USER);
+
 
   return (
     <div className="flex space-x-6 mb-10 justify-center items-center">
@@ -29,7 +43,7 @@ const Socials = () => {
         />
       </a>
 
-      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.mytherapist.com.ng&text=Checkout${user?.name} on Mytherapist.ng`} target="_blank"  className="hover:opacity-50 transition-all cursor-pointer">
+      <a href={`https://x.com/intent/tweet?url=https://${user?.username}.mytherapist.com.ng&text=Checkout${user?.name} on Mytherapist.ng`} target="_blank" className="hover:opacity-50 transition-all cursor-pointer">
         <Image
           src={twitter}
           alt="twitter"

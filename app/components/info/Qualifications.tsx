@@ -1,12 +1,20 @@
-import React from "react";
-import Specialty from "./Specialty";
+"use client";
+import React, { JSX } from "react";
 import Qualification from "./Qualification";
-import copy from "@/app/utils/copy";
 import { grotesk } from "@/app/utils/font";
-import { useUser } from "@/app/context/userContext";
+import { getLocalStorageItem } from "@/app/utils/local-storage/localStorage";
+import { ITherapistResponseData } from "@/app/types/response.type";
+import { STORE_KEYS } from "@/app/configs/store.config";
 
-const Qualifications = () => {
-  const { user } = useUser();
+/**
+ * Qualifications renders a div with a heading and a list of the user's educational
+ * qualifications, obtained from the user's data stored in local storage.
+ *
+ * @returns {JSX.Element} The JSX element representing the user's qualifications.
+ */
+const Qualifications = (): JSX.Element => {
+  const user = getLocalStorageItem<ITherapistResponseData>(STORE_KEYS.USER);
+
 
   const Qualifications = user?.qualifications?.split(",");
 
