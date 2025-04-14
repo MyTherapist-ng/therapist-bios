@@ -3,8 +3,25 @@ import { useEffect } from "react";
 import { useUser } from "./context/userContext";
 import { useRouter } from "next/router";
 
+
+
+
+
+
+
+
+
+
+
+/**
+ * The page for a single therapist's profile.
+ *
+ * @param {string} subdomain - The subdomain of the therapist's profile.
+ * @param {any} userData - The data of the therapist.
+ *
+ * @returns {JSX.Element} A JSX element representing the page.
+ */
 function MyPage({ subdomain, userData }: { subdomain: string; userData: any }) {
-  const router = useRouter();
   const { setUser } = useUser();
 
   useEffect(() => {
@@ -26,10 +43,19 @@ function MyPage({ subdomain, userData }: { subdomain: string; userData: any }) {
   );
 }
 
+  /**
+   * A server-side function that fetches data for a therapist's profile from the
+   * API and redirects if the subdomain is invalid.
+   *
+   * @param {any} context - The Next.js context object.
+   *
+   * @returns {Promise<any>} A Promise that resolves with the props for the page.
+   */
 export async function getServerSideProps(context: any) {
   const { req } = context;
   const hostname = req.headers.host || "";
   const parts = hostname.split(".");
+
   const subdomain = parts.length > 2 ? parts[0] : null;
 
   if (!subdomain) {
