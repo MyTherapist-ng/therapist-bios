@@ -34,7 +34,6 @@ export async function getServerSideProps(context: any) {
 
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data)
       return {
         props: {
           therapistData: data,
@@ -76,7 +75,7 @@ function MyPage({ therapistData }: { therapistData: any }) {
 
   return (
     <div>
-      <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
+      <main className="flex flex-col items-center justify-between min-h-screen px-5 md:px-0">
         <User />
         <Info />
         <Footer />

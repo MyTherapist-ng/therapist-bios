@@ -22,19 +22,20 @@ const UserProfile = (): JSX.Element => {
 
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center">
       <Image
         width={120}
         height={120}
         alt="avatar"
         style={{ objectFit: "cover" }}
         className="md:w-[186px] md:h-[186px] rounded-full"
-        src={user?.avatar || "/default-avatar.png"}
+        src={user?.avatar as any}
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkyM//DwADVAHnfjgCmgAAAABJRU5ErkJggg=="
+        loading={"lazy"}
 
       />
-      <div className="flex space-x-2 items-center justify-center mt-7 mb-3">
+      <div className="flex items-center justify-center mb-3 space-x-2 mt-7">
         <h1
           className={` ${grotesk.className} font-semibold text-2xl md:text-[32px] md:leading-10 animate__fadeIn`}
         >
