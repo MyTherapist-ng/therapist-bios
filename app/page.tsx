@@ -1,55 +1,102 @@
-"use client";
-import User from "./components/user/User";
-import Info from "./components/info/Info";
-import Footer from "./components/footer/Footer";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUser } from "./context/userContext";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
-function MyPage({ params }: { params: any }) {
-  console.log(params);
-  const [subdomain, setSubdomain] = useState("");
-  const router = useRouter();
+
+
+
+
+
+
+
+
+
+
+/**
+ * The page for a single therapist's profile.
+ *
+ * @param {string} subdomain - The subdomain of the therapist's profile.
+ * @param {any} userData - The data of the therapist.
+ *
+ * @returns {JSX.Element} A JSX element representing the page.
+ */
+function MyPage({ subdomain, userData }: { subdomain: string; userData: any }) {
   const { setUser } = useUser();
 
-  const fetchData = async (subdomain: string) => {
-    const response = await fetch(
-      `https://admin.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`
-    );
-    console.log(response);
-    if (response.status === 200) {
-      const data = await response.json();
-      setUser(data);
-    } else {
-      router.push("https://mytherapist.ng/for-therapists");
-    }
-  };
-
   useEffect(() => {
-    // Extract the subdomain from the client-side window.location
-    const parts = window.location.hostname.split(".");
-    const subdomain = parts[parts.length - 2];
     if (!subdomain) {
       router.push("https://mytherapist.ng/for-therapists");
     } else {
-      setSubdomain(subdomain);
-      fetchData(subdomain);
+      setUser(userData);
     }
-  }, []);
+  }, [subdomain, userData, router, setUser]);
 
   if (!subdomain) return null;
 
   return (
     <div>
-      <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
-        {/* <User />
-        <Info />
-        <Footer /> */}
+      <main className="flex flex-col items-center justify-between min-h-screen px-5 md:px-0">
         You are not supposed to be here
       </main>
     </div>
   );
+}
+
+  /**
+   * A server-side function that fetches data for a therapist's profile from the
+   * API and redirects if the subdomain is invalid.
+   *
+   * @param {any} context - The Next.js context object.
+   *
+   * @returns {Promise<any>} A Promise that resolves with the props for the page.
+   */
+export async function getServerSideProps(context: any) {
+  const { req } = context;
+  const hostname = req.headers.host || "";
+  const parts = hostname.split(".");
+
+  const subdomain = parts.length > 2 ? parts[0] : null;
+
+  if (!subdomain) {
+    return {
+      redirect: {
+        destination: "https://mytherapist.ng/for-therapists",
+        permanent: false,
+      },
+    };
+  }
+
+  try {
+    const response = await fetch(
+      `https://admin.mytherapist.ng/api/v1/user/therapists/public/${subdomain}`
+    );
+
+    if (response.status === 200) {
+      const userData = await response.json();
+      return {
+        props: {
+          subdomain,
+          userData,
+        },
+      };
+    } else {
+      return {
+        redirect: {
+          destination: "https://mytherapist.ng/for-therapists",
+          permanent: false,
+        },
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      redirect: {
+        destination: "https://mytherapist.ng/for-therapists",
+        permanent: false,
+      },
+    };
+  }
 }
 
 export default MyPage;

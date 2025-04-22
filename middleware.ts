@@ -1,11 +1,20 @@
-// middleware.ts
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { getValidSubdomain } from './app/helpers/getValidSubdomain';
 
 // RegExp for public files
 const PUBLIC_FILE = /\.(.*)$/; // Files
 
+/**
+ * Rewrites the URL if a subdomain is present. If the subdomain is found, it
+ * prepends the subdomain to the path. If the subdomain is not found, the
+ * request is passed through as is. This works for both HTTP and HTTPS
+ * requests.
+ *
+ * @param {{}} req - The request object.
+ * @returns {NextResponse} - The response object, or a redirect to the
+ * rewritten URL.
+ */
 export async function middleware(req: NextRequest) {
   // Clone the URL
   const url = req.nextUrl.clone();
