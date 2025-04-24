@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import profile from "../../assets/profile.svg";
 import verified from "../../assets/verified.svg";
 import { grotesk } from "@/app/utils/font";
 import { useUser } from "@/app/context/userContext";
@@ -14,12 +13,11 @@ const UserProfile = () => {
         width={120}
         height={120}
         alt="avatar"
-        style={{objectFit: "cover"}}
+        style={{ objectFit: "cover" }}
         className="md:w-[186px] md:h-[186px] rounded-full"
         src={user?.avatar}
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkyM//DwADVAHnfjgCmgAAAABJRU5ErkJggg=="
-        
       />
       <div className="flex space-x-2 items-center justify-center mt-7 mb-3">
         <h1
