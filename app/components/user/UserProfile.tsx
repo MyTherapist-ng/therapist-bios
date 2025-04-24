@@ -4,11 +4,20 @@ import verified from "../../assets/verified.svg";
 import { grotesk } from "@/app/utils/font";
 import { useUser } from "@/app/context/userContext";
 
+
+/**
+ * UserProfile
+ *
+ * A React component that renders a user's profile information in a neat format.
+ *
+ * @returns A JSX element representing the user's profile.
+ */
 const UserProfile = () => {
   const { user } = useUser();
 
   return (
     <div className="flex flex-col justify-center items-center">
+
       <Image
         width={120}
         height={120}
