@@ -1,13 +1,18 @@
 import React from "react";
 import Cta from "./Cta";
 import Userdetails from "./Userdetails";
-import UserProfile from "./UserProfile";
 import { useUser } from "@/app/context/userContext";
+import dynamic from 'next/dynamic';
+
+
+const UserProfile = dynamic(() => import('./UserProfile'), {
+  ssr: false,
+});
 
 
 const User = () => {
-  
-  const {user} = useUser();
+
+  const { user } = useUser();
   return (
     <div className="w-full flex flex-col justify-center items-center mt-[30px] md:mt-10 mb-[76px]">
       <UserProfile />

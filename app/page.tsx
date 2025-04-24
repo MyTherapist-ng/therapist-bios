@@ -1,61 +1,53 @@
-
-import { useEffect } from "react";
 import { useUser } from "./context/userContext";
-import { useRouter } from "next/router";
 
 
 
-
-
-
-
-
-
-
-
-/**
- * The page for a single therapist's profile.
- *
- * @param {string} subdomain - The subdomain of the therapist's profile.
- * @param {any} userData - The data of the therapist.
- *
- * @returns {JSX.Element} A JSX element representing the page.
- */
 function MyPage({ subdomain, userData }: { subdomain: string; userData: any }) {
+  /**
+   * Renders a page component for a therapist profile.
+   *
+   * @param {Object} props - An object containing the subdomain and user data.
+   * @param {string} props.subdomain - The subdomain for the therapist.
+   * @param {any} props.userData - The user data for the therapist.
+   *
+   * @returns {JSX.Element|Object} A redirect object if no subdomain is provided,
+   * otherwise a JSX element representing the page.
+   */
   const { setUser } = useUser();
 
-  useEffect(() => {
-    if (!subdomain) {
-      router.push("https://mytherapist.ng/for-therapists");
-    } else {
-      setUser(userData);
-    }
-  }, [subdomain, userData, router, setUser]);
+  if (!subdomain) {
+    return {
+      redirect: {
+        destination: "https://mytherapist.ng/for-therapists",
+        permanent: false,
+      },
+    };
+  }
 
-  if (!subdomain) return null;
+  setUser(userData);
 
   return (
     <div>
-      <main className="flex flex-col items-center justify-between min-h-screen px-5 md:px-0">
+      <main className="flex min-h-screen px-5 md:px-0 flex-col items-center justify-between">
         You are not supposed to be here
       </main>
     </div>
   );
 }
 
-  /**
-   * A server-side function that fetches data for a therapist's profile from the
-   * API and redirects if the subdomain is invalid.
-   *
-   * @param {any} context - The Next.js context object.
-   *
-   * @returns {Promise<any>} A Promise that resolves with the props for the page.
-   */
-export async function getServerSideProps(context: any) {
+/**
+ * Fetches data for a therapist given a subdomain and returns a Next.js
+ * redirect or props object.
+ *
+ * @param {Object} context - The context object containing the request.
+ *
+ * @returns {Object} A redirect object or a props object with the subdomain and
+ * user data.
+ */
+export async function fetchTherapistData(context: any) {
   const { req } = context;
   const hostname = req.headers.host || "";
   const parts = hostname.split(".");
-
   const subdomain = parts.length > 2 ? parts[0] : null;
 
   if (!subdomain) {
