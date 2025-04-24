@@ -1,17 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["www.gravatar.com", "amazonaws.com", "storageforbackend.s3.us-east-1.amazonaws.com", "storageforbackend.s3.amazonaws.com"],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'www.gravatar.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'amazonaws.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'new-storageforbackend.s3.eu-west-2.amazonaws.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'storageforbackend.s3.us-east-1.amazonaws.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'storageforbackend.s3.amazonaws.com', pathname: '/**' },
+    ],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/",
-  //       destination: "https://mytherapist.ng/for-therapists",
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
 };
 
 module.exports = nextConfig;

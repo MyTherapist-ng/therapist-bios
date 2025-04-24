@@ -7,6 +7,16 @@ import Info from "../components/info/Info";
 import Footer from "../components/footer/Footer";
 import { useUser } from "../context/userContext";
 
+
+
+/**
+ * The page for a single therapist's profile.
+ *
+ * @param {Object} props - An object with a single property, `params`, which is
+ * a Promise that resolves with an object containing a single property, `therapist`, which is the subdomain of the therapist's profile.
+ *
+ * @returns {JSX.Element} A JSX element representing the page.
+ */
 function MyPage(props: { params: Promise<any> }) {
   const params = use(props.params);
   const { therapist } = params;
@@ -17,7 +27,6 @@ function MyPage(props: { params: Promise<any> }) {
     const response = await fetch(
       `https://admin.mytherapist.ng/api/v1/user/therapists/public/${therapist}`
     );
-    console.log(response);
     if (response.status === 200) {
       const data = await response.json();
       setUser(data);
@@ -32,6 +41,7 @@ function MyPage(props: { params: Promise<any> }) {
     } else {
       fetchData(therapist);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!therapist) return null;
